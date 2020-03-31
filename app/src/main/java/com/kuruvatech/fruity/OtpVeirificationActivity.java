@@ -151,10 +151,20 @@ public class OtpVeirificationActivity extends AppCompatActivity {
 
     public void confirmOtp(String otp)
     {
-        String url = Constants.OTP_CONFIRM_URL;
-        //String review_url = "http://10.239.54.38:3000/v1/vendor/review/";
+        session.createLoginSession(name,phoneNumber,email);
+        session.commiting();
+        Intent i = new Intent(OtpVeirificationActivity.this, CutomerEnterDetailsActivity.class);
+        i.putExtra("order", order);
+        i.putExtra("HotelDetail",hotelDetail);
+        i.putExtra("Uniqid","From_OtpVeirificationActivity");
+        SmsReceiver.bindListener(null);
+        startActivity(i);
+        verifyPressed = false;
 
-        new PostJSONAsyncTask().execute(url, phoneNumber,otp);
+//        String url = Constants.OTP_CONFIRM_URL;
+//        //String review_url = "http://10.239.54.38:3000/v1/vendor/review/";
+//
+//        new PostJSONAsyncTask().execute(url, phoneNumber,otp);
     }
     public  class PostJSONAsyncTask extends AsyncTask<String, Void, Boolean> {
         Dialog dialog;

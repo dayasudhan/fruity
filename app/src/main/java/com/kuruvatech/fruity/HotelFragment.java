@@ -6,15 +6,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AlertDialog;
+
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,23 +81,21 @@ public class HotelFragment extends Fragment {
     private static final String TAG_BULK_TYPE = "isBulkVendor";
 
 
-
-
     private ArrayList<HotelDetail> hotellist;
-    ListView listView ;
+    AppCompatImageView listView;
     TextView textview;
 
     //gagan
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    private static final String[] IMAGES = new String[] {
+    private static final String[] IMAGES = new String[]{
             Constants.SLIDER_URL1,
             Constants.SLIDER_URL2,
             Constants.SLIDER_URL3,
             Constants.SLIDER_URL4
     };
     private MyViewPager pager;
-    int sliderIndex=0,sliderMaxImages = 4;
+    int sliderIndex = 0, sliderMaxImages = 4;
     int delayMiliSec = 8000;
     SessionManager session;
     private Handler handler;
@@ -113,13 +115,12 @@ public class HotelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
 
-
-         View v = inflater.inflate(R.layout.activity_hotel, container, false);
+        View v = inflater.inflate(R.layout.activity_hotel, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipe_refresh_layout);
 
 
         handler = new Handler();
-        hotellist =  new ArrayList<HotelDetail>();
+        hotellist = new ArrayList<HotelDetail>();
         session = new SessionManager(getActivity().getApplicationContext());
 
 
@@ -142,8 +143,7 @@ public class HotelFragment extends Fragment {
         swipeRefreshLayout.setProgressBackgroundColor(android.R.color.transparent);
 
 
-
-        if(!areaClicked.isEmpty())
+        if (!areaClicked.isEmpty())
             getHotelList(areaClicked);
         else
             getHotelList("VijayaNagara");
@@ -152,7 +152,7 @@ public class HotelFragment extends Fragment {
 
 
         pager = (MyViewPager) v.findViewById(R.id.pager);
-        ScreenSlidePagerAdapter pagerAdapter =new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager(),getActivity().getApplicationContext());
+        ScreenSlidePagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(getActivity().getSupportFragmentManager(), getActivity().getApplicationContext());
         pager.setPageTransformer(true, new ZoomOutPageTransformer());
 
         pagerAdapter.addAll(session.getSlider());
@@ -160,41 +160,48 @@ public class HotelFragment extends Fragment {
         CirclePageIndicator indicator = (CirclePageIndicator) v.findViewById(R.id.indicator);
         indicator.setViewPager(pager);
 
-    //    handler.postDelayed(runnable, delayMiliSec);
+        //    handler.postDelayed(runnable, delayMiliSec);
         //gagan end
 
         textview = (TextView) v.findViewById(R.id.textView_no_vendors);
-        listView = (ListView) v.findViewById(R.id.listView_vendor);
+        listView = (AppCompatImageView) v.findViewById(R.id.listView_vendor);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(hotellist.get(position).getIsOpen() !=0) {
-                    Intent i = new Intent(getActivity(), ProductDetailViewActivity.class);
-                    Gson gson = new Gson();
-                    String hotel = gson.toJson(hotellist.get(position));
-                    i.putExtra("hotel", hotel);
-                    if(isBulk() == true)
-                    {
-                        i.putExtra("isBulk","true");
-                    }
-                    else
-                    {
-                        i.putExtra("isBulk","false");
-                    }
-                    startActivity(i);
-                }
-                else
-                {
-                    alertMessage("Delevery for this hotel is not available at this time. kindly try other hotel near by you");
-                }
+            public void onClick(View v) {
+                moveNext();
+            }
+        });
+        Button nextButton = (Button) v.findViewById(R.id.button);
+        nextButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                moveNext();
             }
         });
         setHasOptionsMenu(true);
         return v;
     }
-    public void getHotelListByGPS(String latitude, String longitude)
-    {
+
+    private void moveNext() {
+        if (hotellist.get(1).getIsOpen() != 0) {
+            Intent i = new Intent(getActivity(), ProductDetailViewActivity.class);
+            Gson gson = new Gson();
+            String hotel = gson.toJson(hotellist.get(1));
+            i.putExtra("hotel", hotel);
+            if (isBulk() == true) {
+                i.putExtra("isBulk", "true");
+            } else {
+                i.putExtra("isBulk", "false");
+            }
+            startActivity(i);
+        } else {
+            alertMessage("Delevery for this hotel is not available at this time. kindly try other hotel near by you");
+        }
+    }
+
+    public void getHotelListByGPS(String latitude, String longitude) {
         ((MainActivity) getActivity())
                 .setActionBarTitle(session.getAddress().toString());
         hotellist.clear();
@@ -203,20 +210,17 @@ public class HotelFragment extends Fragment {
         order_url = order_url + "latitude=" + latitude + "&longitude=" + longitude;
         //http://kuruva.herokuapp.com/v1/vendor/deliveryareasbygps?latitude=13.0661&longitude=77.5007&isbulkrequest=1
 
-        if(isBulk)
-        {
+        if (isBulk) {
+            order_url = order_url + "&isbulkrequest=1";
+        } else {
             order_url = order_url + "&isbulkrequest=1";
         }
-        else
-        {
-            order_url = order_url + "&isbulkrequest=1";
-        }
-       // Toast.makeText(getActivity().getApplicationContext(), order_url, Toast.LENGTH_LONG).show();
+        // Toast.makeText(getActivity().getApplicationContext(), order_url, Toast.LENGTH_LONG).show();
 
         new JSONAsyncTask().execute(order_url);
     }
-    public void getHotelList(String areaClicked)
-    {
+
+    public void getHotelList(String areaClicked) {
         ((MainActivity) getActivity())
                 .setActionBarTitle(areaClicked);
         hotellist.clear();
@@ -225,41 +229,38 @@ public class HotelFragment extends Fragment {
 
         String area = areaClicked.replace(" ", "%20");
         order_url = order_url + area;
-        if(isBulk)
-        {
+        if (isBulk) {
             order_url = order_url + "&isbulkrequest=1";
-        }
-        else
-        {
+        } else {
             order_url = order_url + "&isbulkrequest=0";
         }
         new JSONAsyncTask().execute(order_url);
     }
-    public void initHotelList()
-    {
+
+    public void initHotelList() {
 
 
-            HotelListAdapter dataAdapter = new HotelListAdapter(getActivity(),
-                    R.layout.hotel_list_item, hotellist);
-            listView.setAdapter(dataAdapter);
+        HotelListAdapter dataAdapter = new HotelListAdapter(getActivity(),
+                R.layout.hotel_list_item, hotellist);
+        //    listView.setAdapter(dataAdapter);
 
-            dataAdapter.notifyDataSetChanged();
-        if(hotellist.size() > 0 ) {
+        dataAdapter.notifyDataSetChanged();
+        if (hotellist.size() > 0) {
             textview.setVisibility(View.INVISIBLE);
-        }
-        else
-        {
+        } else {
             textview.setVisibility(View.VISIBLE);
         }
 
     }
 
     @Override
-    public void onCreateOptionsMenu(android.view.Menu menu , MenuInflater inflater) {
-           inflater.inflate(R.menu.home_menu, menu);
+    public void onCreateOptionsMenu(android.view.Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.home_menu, menu);
     }
-    public  class JSONAsyncTask extends AsyncTask<String, Void, Boolean> {
+
+    public class JSONAsyncTask extends AsyncTask<String, Void, Boolean> {
         Dialog dialog;
+
         public JSONAsyncTask() {
 
         }
@@ -303,24 +304,24 @@ public class HotelFragment extends Fragment {
                                 MenuItem menuItem = new MenuItem();
 //                                if(menu_object.has(TAG_ID))
 //                                    menuItem.set_id(menu_object.getString(TAG_ID));
-                                if(menu_object.has(TAG_NAME))
+                                if (menu_object.has(TAG_NAME))
                                     menuItem.setName(menu_object.getString(TAG_NAME));
-                                if(menu_object.has("description"))
+                                if (menu_object.has("description"))
                                     menuItem.setItemDescription(menu_object.getString("description"));
-                                if(menu_object.has("logo"))
+                                if (menu_object.has("logo"))
                                     menuItem.setLogo(menu_object.getString("logo"));
-                                String dd =menu_object.getString(TAG_PRICE);
-                                if(menu_object.has(TAG_PRICE) ) {
+                                String dd = menu_object.getString(TAG_PRICE);
+                                if (menu_object.has(TAG_PRICE)) {
                                     try {
                                         menuItem.setPrice(menu_object.getInt(TAG_PRICE));
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
                                 }
-                                if(menu_object.has(TAG_AVAILIBILITY)) {
+                                if (menu_object.has(TAG_AVAILIBILITY)) {
 
                                     try {
-                                        if(menu_object.getInt(TAG_AVAILIBILITY) == 1)
+                                        if (menu_object.getInt(TAG_AVAILIBILITY) == 1)
                                             menuItem.setAvailable(1);
                                         else
                                             menuItem.setAvailable(0);
@@ -331,14 +332,13 @@ public class HotelFragment extends Fragment {
                                 hotelDetail.getMenu().add(menuItem);
                             }
                         }
-                        if(object.has(TAG_ID))
+                        if (object.has(TAG_ID))
                             hotelDetail.set_id(object.getString(TAG_ID));
 
-                        if(object.has(TAG_SPECIALITY))
+                        if (object.has(TAG_SPECIALITY))
                             hotelDetail.setSpeciality(object.getString(TAG_SPECIALITY));
 
-                        if(object.has(TAG_HOTEL))
-                        {
+                        if (object.has(TAG_HOTEL)) {
                             JSONObject hotelObj = object.getJSONObject(TAG_HOTEL);
                             if (hotelObj.has(TAG_NAME)) {
                                 hotelDetail.getHotel().setName(hotelObj.getString(TAG_NAME));
@@ -359,24 +359,23 @@ public class HotelFragment extends Fragment {
                         }
                         if (object.has(TAG_ADDRESS)) {
                             JSONObject addrObj = object.getJSONObject(TAG_ADDRESS);
-                            if(addrObj.has("addressLine1"))
+                            if (addrObj.has("addressLine1"))
                                 hotelDetail.getAddress().setAddressLine1(addrObj.getString("addressLine1"));
-                            if(addrObj.has("addressLine2"))
+                            if (addrObj.has("addressLine2"))
                                 hotelDetail.getAddress().setAddressLine2(addrObj.getString("addressLine2"));
-                            if(addrObj.has("areaName"))
+                            if (addrObj.has("areaName"))
                                 hotelDetail.getAddress().setAreaName(addrObj.getString("areaName"));
-                            if(addrObj.has("city"))
+                            if (addrObj.has("city"))
                                 hotelDetail.getAddress().setCity(addrObj.getString("city"));
-                            if(addrObj.has("LandMark"))
+                            if (addrObj.has("LandMark"))
                                 hotelDetail.getAddress().setLandMark(addrObj.getString("LandMark"));
-                            if(addrObj.has("street"))
+                            if (addrObj.has("street"))
                                 hotelDetail.getAddress().setStreet(addrObj.getString("street"));
-                            if(addrObj.has("street"))
+                            if (addrObj.has("street"))
                                 hotelDetail.getAddress().setZip(addrObj.getString("street"));
                         }
 
-                        if(object.has(TAG_DELIVERY_AREAS))
-                        {
+                        if (object.has(TAG_DELIVERY_AREAS)) {
                             JSONArray delieveryArray = object.getJSONArray(TAG_DELIVERY_AREAS);
                             hotelDetail.getDeliverAreas().clear();
                             for (int j = 0; j < delieveryArray.length(); j++) {
@@ -385,9 +384,8 @@ public class HotelFragment extends Fragment {
                                     hotelDetail.getDeliverAreas().add(da_object.getString(TAG_NAME));
                             }
                         }
-                        if(object.has(TAG_ISOPEN))
-                        {
-                            int var=0 ;
+                        if (object.has(TAG_ISOPEN)) {
+                            int var = 0;
                             try {
                                 var = object.getInt(TAG_ISOPEN);
                             } catch (JSONException e) {
@@ -395,9 +393,8 @@ public class HotelFragment extends Fragment {
                             }
                             hotelDetail.setIsOpen(var);
                         }
-                        if(object.has(TAG_RATING))
-                        {
-                            int rating=0 ;
+                        if (object.has(TAG_RATING)) {
+                            int rating = 0;
                             try {
                                 rating = object.getInt(TAG_RATING);
                             } catch (JSONException e) {
@@ -406,16 +403,14 @@ public class HotelFragment extends Fragment {
                             hotelDetail.setRating(rating);
                         }
 
-                        if(object.has(TAG_ORDER_ACCEPT_TIMINGS))
-                        {
+                        if (object.has(TAG_ORDER_ACCEPT_TIMINGS)) {
                             JSONObject ordAcctime = object.getJSONObject(TAG_ORDER_ACCEPT_TIMINGS);
                             Gson gson = new Gson();
-                            OrderAcceptTimings ordacctimeobj =  gson.fromJson(ordAcctime.toString(),OrderAcceptTimings.class);
+                            OrderAcceptTimings ordacctimeobj = gson.fromJson(ordAcctime.toString(), OrderAcceptTimings.class);
                             hotelDetail.setOrderAcceptTimings(ordacctimeobj);
 
                         }
-                        if(isBulk)
-                        {
+                        if (isBulk) {
                             if (object.has(TAG_BULK_DELIVERY_RANGE)) {
                                 int range = 0;
                                 try {
@@ -455,8 +450,7 @@ public class HotelFragment extends Fragment {
                                 }
                                 hotelDetail.setDeliveryTime(delieveryTime);
                             }
-                        }
-                        else {
+                        } else {
 
                             if (object.has(TAG_DELIVERY_RANGE)) {
                                 int range = 0;
@@ -513,9 +507,10 @@ public class HotelFragment extends Fragment {
             return false;
 
         }
+
         protected void onPostExecute(Boolean result) {
 
-            if(getActivity() != null) {
+            if (getActivity() != null) {
                 if (result == false) {
 
                     Toast.makeText(getActivity().getApplicationContext(), "Unable to fetch data from server", Toast.LENGTH_LONG).show();
@@ -529,6 +524,7 @@ public class HotelFragment extends Fragment {
 
         }
     }
+
     public void alertMessage(String message) {
         DialogInterface.OnClickListener dialogClickListeneryesno = new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
@@ -542,9 +538,10 @@ public class HotelFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Khaanavali");
         builder.setMessage(message).setNeutralButton("Ok", dialogClickListeneryesno)
-                    .setIcon(R.drawable.ic_action_about).show();
+                .setIcon(R.drawable.ic_action_about).show();
 
     }
+
     @Override
     public void onResume() {
         super.onResume();

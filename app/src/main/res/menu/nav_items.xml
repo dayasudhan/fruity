@@ -6,12 +6,12 @@
               <!--android:title="Location"-->
               <!--android:icon="@drawable/ic_action_fab" />-->
         <item android:id="@+id/hotel"
-            android:title="Hotels"
+            android:title="Home"
             android:icon="@drawable/phome" />
-        <item android:id="@+id/bulk_activity"
+<!--        <item android:id="@+id/bulk_activity"-->
 
-            android:title="Bulk"
-            android:icon="@drawable/bulk_order" />
+<!--            android:title="Bulk"-->
+<!--            android:icon="@drawable/bulk_order" />-->
        <!-- <item android:id="@+id/myprofile"
             android:title="My Profile"
             android:icon="@drawable/profilepng" />-->
@@ -30,9 +30,9 @@
             android:title="Invite"
             android:icon="@drawable/pinvitation" />
 
-        <item android:id="@+id/about_knvl"
-            android:title="Help"
-            android:icon="@drawable/phelp" />
+<!--        <item android:id="@+id/about_knvl"-->
+<!--            android:title="Help"-->
+<!--            android:icon="@drawable/phelp" />-->
 
     </group>
 </menu>

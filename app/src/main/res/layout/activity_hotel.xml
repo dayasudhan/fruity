@@ -60,13 +60,14 @@
 
 
 
-                        <ListView
+                        <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/listView_vendor"
                         android:layout_centerHorizontal="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="0dp"
+                        android:src="@drawable/home2"
                         />
 
 
@@ -84,7 +85,17 @@
                                 android:gravity="center"
                                 android:layout_centerHorizontal="true"
                                 android:layout_centerVertical="true" />
-
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NEXT"
+                android:textColor="@color/titleTextColor"
+                android:id="@+id/button"
+                android:background="@drawable/buttonselector"
+                android:layout_marginTop="5dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true" />
 
     </RelativeLayout>
     </LinearLayout>

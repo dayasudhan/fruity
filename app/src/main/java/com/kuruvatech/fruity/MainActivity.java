@@ -259,16 +259,18 @@ public class MainActivity extends AppCompatActivity {
                     frag = new Notification();
                     ishotelFragmentOpen = false;
                 }
-                else if (itemId == R.id.bulk_activity) {
-                    frag = new HotelFragment();
-                    ((HotelFragment) frag).setBulk(true);
-                    ishotelFragmentOpen = true;
-                } else if (itemId == R.id.about_knvl) {
-
-                    frag = new AboutKhaanavali();
-                    ishotelFragmentOpen = false;
-
-                } else if (itemId == R.id.status) {
+//                else if (itemId == R.id.bulk_activity) {
+//                    frag = new HotelFragment();
+//                    ((HotelFragment) frag).setBulk(true);
+//                    ishotelFragmentOpen = true;
+//                }
+//                else if (itemId == R.id.about_knvl) {
+//
+//                    frag = new AboutKhaanavali();
+//                    ishotelFragmentOpen = false;
+//
+//                }
+                else if (itemId == R.id.status) {
                     frag = new StatusTrackerFragment();
                     ishotelFragmentOpen = false;
                 } else /*if (itemId == R.id.profileinfo) {

@@ -82,9 +82,21 @@ public class RegisterActivity extends AppCompatActivity {
                     editemail.requestFocus();
                     alertMessage("Enter email");
                 }
+//                else
+//                {
+//                    registerUser(phoneNumber.getText().toString(),editName.getText().toString(),editemail.getText().toString(),"deviceid");
+//                }
                 else
                 {
-                    registerUser(phoneNumber.getText().toString(),editName.getText().toString(),editemail.getText().toString(),"deviceid");
+                    Intent i = new Intent(RegisterActivity.this, OtpVeirificationActivity.class);
+
+                    i.putExtra("order", order);
+                    i.putExtra("HotelDetail",hotelDetail);
+                    i.putExtra("phoneNumber",phoneNumber.getText().toString());
+                    i.putExtra("name",editName.getText().toString());
+                    i.putExtra("email", editemail.getText().toString());
+
+                    startActivity(i);
                 }
                // postReview(hotelid,comment.getText().toString(),rating.getRating());
             }
