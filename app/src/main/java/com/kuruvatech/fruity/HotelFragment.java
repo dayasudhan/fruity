@@ -134,7 +134,7 @@ public class HotelFragment extends Fragment {
                 if (!areaClicked.isEmpty())
                     getHotelList(areaClicked);
                 else
-                    getHotelList("VijayaNagara");
+                    getHotelList("TilakNagara");
             }
 
         });
@@ -146,7 +146,7 @@ public class HotelFragment extends Fragment {
         if (!areaClicked.isEmpty())
             getHotelList(areaClicked);
         else
-            getHotelList("VijayaNagara");
+            getHotelList("TilakNagara");
 
         //gagan
 
@@ -185,10 +185,10 @@ public class HotelFragment extends Fragment {
     }
 
     private void moveNext() {
-        if (hotellist.get(1).getIsOpen() != 0) {
+        if (hotellist.get(0).getIsOpen() != 0) {
             Intent i = new Intent(getActivity(), ProductDetailViewActivity.class);
             Gson gson = new Gson();
-            String hotel = gson.toJson(hotellist.get(1));
+            String hotel = gson.toJson(hotellist.get(0));
             i.putExtra("hotel", hotel);
             if (isBulk() == true) {
                 i.putExtra("isBulk", "true");
@@ -536,7 +536,7 @@ public class HotelFragment extends Fragment {
             }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Khaanavali");
+        builder.setTitle("Fruity");
         builder.setMessage(message).setNeutralButton("Ok", dialogClickListeneryesno)
                 .setIcon(R.drawable.ic_action_about).show();
 

@@ -201,7 +201,7 @@ public class MyProfile extends Fragment {
             }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Khaanavali");
+        builder.setTitle("Fruity");
         builder.setMessage(message).setNeutralButton("Ok", dialogClickListeneryesno)
                 .setIcon(R.drawable.ic_action_about);
 

@@ -123,7 +123,7 @@ public class AddressListAdapater extends BaseAdapter {
                                              final int position = (Integer) v.getTag();
                                              android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext);
 
-                                             builder.setTitle("Khaanavali");
+                                             builder.setTitle("Fruity");
                                              builder.setMessage("Are you sure you want to delete this Address?");
                                              builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                                  @Override
@@ -161,7 +161,7 @@ public class AddressListAdapater extends BaseAdapter {
 
                                                          android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(mContext);
 
-                                                         builder.setTitle("Khaanavali");
+                                                         builder.setTitle("Fruity");
                                                          builder.setMessage("Are you sure you want to Edit this Address?");
                                                          builder.setPositiveButton("Edit", new DialogInterface.OnClickListener() {
                                                              @Override

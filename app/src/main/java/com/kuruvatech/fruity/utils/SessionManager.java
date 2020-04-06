@@ -31,7 +31,7 @@ public class SessionManager {
 	int PRIVATE_MODE = 0;
 	
 	// Sharedpref file name
-	public static final String PREF_NAME = "KhaanavaliCustomer";
+	public static final String PREF_NAME = "FruityCustomer";
 	
 	// All Shared Preferences Keys
 	private static final String IS_LOGIN = "IsLoggedIn";

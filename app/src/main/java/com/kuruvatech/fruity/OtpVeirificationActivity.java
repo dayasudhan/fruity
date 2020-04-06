@@ -143,7 +143,7 @@ public class OtpVeirificationActivity extends AppCompatActivity {
             }
         };
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Khaanavali");
+        builder.setTitle("Fruity");
         builder.setMessage(message).setNeutralButton("Ok", dialogClickListeneryesno)
                 .setIcon(R.drawable.ic_action_about).show();
 

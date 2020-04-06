@@ -135,7 +135,7 @@ public class NotificationListener extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentIntent(pendingIntent);
         builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
-        builder.setContentTitle("Khaanavali");
+        builder.setContentTitle("Fruity");
         builder.setContentText(msg);
         builder.setAutoCancel(true);
         builder.setWhen(when);

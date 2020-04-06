@@ -266,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //                else if (itemId == R.id.about_knvl) {
 //
-//                    frag = new AboutKhaanavali();
+//                    frag = new AboutFruity();
 //                    ishotelFragmentOpen = false;
 //
 //                }

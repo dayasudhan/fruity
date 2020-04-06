@@ -30,7 +30,7 @@ public class AboutKhaanavali extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.about_khaanavali, container, false);
         ((MainActivity) getActivity())
-                .setActionBarTitle("About Khaanavali");
+                .setActionBarTitle("About Fruity");
         faq=(Button) rootview.findViewById(R.id.faq);
         aboutus=(Button) rootview.findViewById(R.id.aboutus);
         tandC=(Button) rootview.findViewById(R.id.tandc);

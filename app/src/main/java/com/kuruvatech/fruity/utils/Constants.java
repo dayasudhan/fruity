@@ -21,14 +21,12 @@ public class Constants {
     public static final String FIREBASE_APP = "https://project-8598805513533999178.firebaseio.com";
     //To store the firebase id in shared preferences
     public static final String UNIQUE_ID = "uniqueid";
-    public static final String INVITE_TEXT = "Karnataka's local food speciality at your door step\n" +
+    public static final String INVITE_TEXT = "Shimoga's Home Fruit Delivery speciality at your door step\n" +
             " \n" +
-            " Joladha Rotti, Akki rotti, Jawari rotti and Native Kannada food\n" +
-            " \n" +
-            " To order online visit: http://Khaanavali.com\n" +
+            " To order online visit: http://Fruity.com\n" +
             "\t\n" +
             " Download Android App: https://play.google.com/store/apps/details?id=com.kuruvatech.fruity";
-    public static final String INVITE_SUBJECT = "Khaanavali ( ಖಾನಾವಳಿ) the real taste of Karnataka";
+    public static final String INVITE_SUBJECT = "Fruity  ";
 
 
     public static final String SECUREKEY_KEY = "securekey";
