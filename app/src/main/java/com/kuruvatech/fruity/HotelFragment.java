@@ -134,7 +134,7 @@ public class HotelFragment extends Fragment {
                 if (!areaClicked.isEmpty())
                     getHotelList(areaClicked);
                 else
-                    getHotelList("TilakNagara");
+                    getHotelList(Constants.AREATOBESEARCHED);
             }
 
         });
@@ -146,7 +146,7 @@ public class HotelFragment extends Fragment {
         if (!areaClicked.isEmpty())
             getHotelList(areaClicked);
         else
-            getHotelList("TilakNagara");
+            getHotelList(Constants.AREATOBESEARCHED);
 
         //gagan
 

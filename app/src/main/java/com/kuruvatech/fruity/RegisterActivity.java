@@ -76,12 +76,12 @@ public class RegisterActivity extends AppCompatActivity {
                     editName.requestFocus();
                     alertMessage("Enter Name");
                 }
-                else if(!validateEmail(editemail.getText().toString()))
-                {
-                    editemail.setFocusableInTouchMode(true);
-                    editemail.requestFocus();
-                    alertMessage("Enter email");
-                }
+//                else if(!validateEmail(editemail.getText().toString()))
+//                {
+//                    editemail.setFocusableInTouchMode(true);
+//                    editemail.requestFocus();
+//                    alertMessage("Enter email");
+//                }
 //                else
 //                {
 //                    registerUser(phoneNumber.getText().toString(),editName.getText().toString(),editemail.getText().toString(),"deviceid");

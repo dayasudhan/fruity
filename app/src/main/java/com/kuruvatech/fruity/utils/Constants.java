@@ -37,7 +37,7 @@ public class Constants {
     public static final String VERSION_VALUE = "1";
     public static final String CLIENT_VALUE = "bhoomika";
 	
-	//gagan
+
 
     public static final String NOTIFICATION_URL= MAIN_URL + "/images/logo/notification.jpg";
     public static final String ACCEPTED_URL= MAIN_URL + "/images/logo/accepted.png";
@@ -60,5 +60,7 @@ public class Constants {
     public static final int TITLE_TEXT_COLOR_RED = 00;
     public static final int TITLE_TEXT_COLOR_GREEN = 177;
     public static final int TITLE_TEXT_COLOR_BLUE = 106;
+
+    public static final String AREATOBESEARCHED= "Lalwadi";
 
 }

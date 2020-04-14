@@ -226,7 +226,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/title_text_color"
-            android:text="Hotel -"
+            android:text="Vendor -"
 
             android:id="@+id/vendor_name_text"
             android:layout_alignParentTop="true"
@@ -250,7 +250,7 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:textColor="@color/title_text_color"
-            android:text="Hotel Phone - "
+            android:text="Phone - "
             android:id="@+id/vendor_phone_text"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -387,7 +387,7 @@
         android:textSize="16sp"
 
         android:textColor="@color/heading_color"
-        android:text="Your Fruits  will reach you on time. Kindly note down your Order Id for further tracking your order status."
+        android:text="Your Order Items will reach you on time. Kindly note down your Order Id for further tracking your order status."
         android:id="@+id/thanks"
 
         android:layout_below="@+id/relativeLayout"

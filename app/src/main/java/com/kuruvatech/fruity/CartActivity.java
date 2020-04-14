@@ -86,7 +86,7 @@ public class CartActivity extends AppCompatActivity implements PlusMinusButtonLi
 
                 if(order.getBill_value() < hotelDetail.getMinimumOrder())
                 {
-                    String text  = "Minimum Order for this Hotel is Rs." +  Integer.toString(hotelDetail.getMinimumOrder()) + " Kindly add more items";
+                    String text  = "Minimum Order for this Order is Rs." +  Integer.toString(hotelDetail.getMinimumOrder()) + " Kindly add more items";
                     //Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
                     alertMessage(text);
                 }

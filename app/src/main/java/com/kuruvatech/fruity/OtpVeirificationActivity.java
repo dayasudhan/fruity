@@ -105,7 +105,8 @@ public class OtpVeirificationActivity extends AppCompatActivity {
             }
         }
 
-
+        otp.setText("9876");
+        confirmOtp(otp.getText().toString());
         setToolBar("OTP Verification");
     }
 

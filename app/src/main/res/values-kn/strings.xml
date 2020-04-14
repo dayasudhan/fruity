@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Khaanavali</string>
-    <string name="title_activity_location_search">Khaanavali</string>
+    <string name="app_name">Bidar HFPC </string>
+    <string name="title_activity_location_search">Bidar HFPC</string>
 
     <!--gagan-->
     <string name="next">NEXT</string>
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Khaanavali</string>
+    <string name="slide_1_title">Bidar HFPC</string>
     <string name="slide_1_desc">The easiest way to order your Healthy favorite Meal !</string>
 
     <string name="slide_2_title">Rotti uta :)</string>
